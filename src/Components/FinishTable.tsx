@@ -8,7 +8,7 @@ export default class FinishTable extends Component<IPropsFinalTable,any>{
         return(
             <>
                 <table className="table table-striped">
-                    <tr><th>Finalizado</th></tr>
+                    <tr><th>Completed</th></tr>
                     <tr><td>Incorrects</td><td>{this.props.wrongAnswer}</td></tr>
                     <tr><td>Corrects</td><td>{this.props.goodAnswer}</td></tr>
                 </table>
