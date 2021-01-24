@@ -8,26 +8,18 @@ export default class  GameMain extends Component <IPropsGameMain,IStateGameMain>
         super(props);
         this.state={
             numberTypeSelector:0,
-            goodAnswer:0,
-            wrongAnswer:0,
             questDisplaying:false
         }
         this.changeGameMode=this.changeGameMode.bind(this);
         this.setTypeSelector=this.setTypeSelector.bind(this);
-        this.increaGoodAnswer=this.increaGoodAnswer.bind(this);
-        this.decreaseWrongAnswer=this.decreaseWrongAnswer.bind(this);
+      
     }
     static getDerivedStateFromProps(props:IPropsGameMain,state:IStateGameMain){
         return({gameMode:props.questDisplaying});
     }
-    public increaGoodAnswer(){
-        this.setState({goodAnswer:this.state.goodAnswer+1});
-    }
-    public decreaseWrongAnswer(){
-        this.setState({wrongAnswer:this.state.wrongAnswer+1});
-    }
+   
     public changeGameMode():void{
-        if (this.state.questDisplaying===false){
+        if (this.state.questDisplaying===true){
             this.props.imcreaseNumberQue();
         }
         this.setState({questDisplaying:!this.state.questDisplaying});
@@ -37,7 +29,12 @@ export default class  GameMain extends Component <IPropsGameMain,IStateGameMain>
     }
     render():JSX.Element{
         let elemnt:JSX.Element;
-        elemnt=this.state.questDisplaying?<SecQu   increaseGoodAnswer={this.increaGoodAnswer} decreaseWrogAnswer={this.decreaseWrongAnswer} changeGameMode={this.changeGameMode} typeNumber={this.state.numberTypeSelector} ></SecQu>:<QueTypeSelector changeGameMode={this.changeGameMode} setTypeSelector={this.setTypeSelector}></QueTypeSelector>;    
-        return elemnt;
+        elemnt=this.state.questDisplaying?<SecQu increaseGoodAnswer={this.props.increaseGoodAnswer} decreaseWrogAnswer={this.props.decreaseWrongAnswer} changeGameMode={this.changeGameMode} typeNumber={this.state.numberTypeSelector} ></SecQu>:<QueTypeSelector changeGameMode={this.changeGameMode} setTypeSelector={this.setTypeSelector}></QueTypeSelector>;    
+        return (
+            <>
+            <aside style={{paddingLeft:600}}><button className="btn btn-outline-primary mr-5" onClick={this.changeGameMode}>Next</button><button className="btn btn-outline-primary ml-5">Finish</button></aside>
+            {elemnt}
+            </>
+            );
     }
 }

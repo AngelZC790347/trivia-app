@@ -4,7 +4,8 @@ export interface IPropsGame{
 export interface IPropsGameMain{
     questDisplaying:boolean,
     imcreaseNumberQue:()=>any,
-    incrementPoints:()=>any
+    increaseGoodAnswer:()=>void,
+    decreaseWrongAnswer:()=>void
 }
 export interface IPropsGameMode{
     changeGameMode:()=>any,
@@ -15,5 +16,8 @@ export interface IPropsGameMode{
 export interface IPropsGameQuest{
     changeGameMode:()=>any,
     setTypeSelector:(typeSelector:number)=>any,
-    
+}
+export interface IPropsFinalTable{
+    goodAnswer:number,
+    wrongAnswer:number,
 }

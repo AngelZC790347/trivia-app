@@ -32,34 +32,37 @@ export default class SecQu extends Component<IPropsGameMode,IStateSecQu>{
     }
     render(){
         let myObj=Object(this.state.questObject);
-        var listButton:JSX.Element=<></>;
+        var listButton:JSX.Element[]=[];
+        var questionElemnt:JSX.Element=<label></label>;
         for (const key in myObj) {
-            const element = myObj[key];
+            let element=myObj[key];
             console.log(element);
             for (const key2 in element) {
-                var el=element[key2];
-                console.log(el);
-                el.incorrect_answers=Array(el.incorrect_answers);
-                let listOfElemnts:JSX.Element[]=new Array(4);
-                let correcrtElement=<li key={0}><input type="radio" id="correct" name="option" value="correct" ></input>
-                <label htmlFor="correct" >{el.correct_answer}</label></li>;
-                let i=0;
-                listOfElemnts[i]=correcrtElement;
-                i++;
-                for (const key in el.incorrect_answers) {             
-                    const element2 = el.incorrect_answers[key];
-                    while(i<4){
-                        listOfElemnts[i]=<li key={i}>< input type="radio" id={i.toString()} name="option" value={i.toString()} ></input>
-                        <label htmlFor={i.toString()} >{element2[i-1]}</label></li>;
-                        i++;
-                    }       
-                }
-                listButton=<form key={key2}>{el.question}{listOfElemnts}
-                </form>;      
-            }           
-        }    
+                const element2 = element[key2];
+                console.log(element2);
+                for (const key3 in element2) {
+                    const element3=element2[key3];
+                    console.log(element3);
+                    if(key3==="question"){
+                    questionElemnt=<p><pre>{element3}</pre></p>
+                    }
+                    if(key3==="correct_answer"){
+                        listButton.push(<><input type="radio" key="correct" name="alter" onFocus={e=>this.countAnwser(e,"correct")}></input><label>{element3}</label><br></br></>)
+                    }               
+                    if(typeof(element3)!="string"){
+                        let i=0;
+                       for (const key4 in element3) {
+                               const element4 = element3[key4];
+                               listButton.push(<><input type="radio" key={i.toString()} name="alter" onFocus={e=>this.countAnwser(e,i.toString())}></input><label>{element4}</label><br></br></>)
+                               i++;
+                       }
+                    }                    
+                }    
+            }         
+        }   
         return(
             <section>
+                {questionElemnt}
                 {listButton}
             </section>
         );
