@@ -7,9 +7,9 @@ function App():JSX.Element{
   return (
     <div className="App">
       <form action="" className="App-header" noValidate>
-        <div className="form-row">
+        <div className="form-row w-50 center m-t-100">
           <label htmlFor="player-name" style={{marginLeft:"20px"}}>Nombre:</label>
-          <input  type="text" className="form-control m-3" id="player-name"
+          <input  type="text" className="form-control ml-3 w-60" id="player-name"
             onChange={(e)=>state.name=e.currentTarget.value}
           />
           <button id="sub-btn" className="btn btn-primary m-4" 
